@@ -29,7 +29,7 @@ class Document(object):
 
     def find(self, *args, **kwargs):
         results = self.collection.find(*args, **kwargs)
-        return map(lambda data: self.__class__(self.db, self.connection, data), results)
+	return map(lambda data: self.__class__(self.db, self.connection, data), results)
 
     def map_data(self):
         return self.data
@@ -51,7 +51,7 @@ class Station(Document):
             'name': self.name,
             'latitude': self.latitude,
             'longitude': self.longitude,
-            'bikes': self.last_stat['bikes'],
+            'free_bikes': self.last_stat['bikes'],
             'slots': self.last_stat['free'],
             'timestamp': self.last_stat['timestamp'].isoformat()
         }
