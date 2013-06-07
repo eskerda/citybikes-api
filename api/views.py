@@ -19,6 +19,7 @@ def get_fields():
 def index():
     return render_template('index.html')
 
+@app.route('/networks/', methods = ['GET'])
 @app.route('/networks', methods = ['GET'])
 def list_networks():
     networks = Network.find()
