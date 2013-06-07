@@ -2,7 +2,7 @@ from pymongo import Connection
 import json
 
 from api import app
-from flask import jsonify, request
+from flask import jsonify, request, render_template
 from models import Network as Network_Model
 
 import models
@@ -17,7 +17,7 @@ def get_fields():
 
 @app.route('/')
 def index():
-    return "Hello World"
+    return render_template('index.html')
 
 @app.route('/networks', methods = ['GET'])
 def list_networks():
