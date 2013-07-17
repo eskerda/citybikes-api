@@ -17,7 +17,9 @@ def get_fields():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    networks = Network.find()
+    networks = map(lambda network: network.map_data(None), networks)
+    return render_template('index.html', networks = networks)
 
 @app.route('/networks/', methods = ['GET'])
 @app.route('/networks', methods = ['GET'])

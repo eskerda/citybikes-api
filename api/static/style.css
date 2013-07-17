@@ -11,3 +11,32 @@ body {
 main {
     height: 100%;
 }
+
+.progressbar {
+    position: relative;
+    height: 25px;
+    width: 100%;
+    border-radius: 2px;
+    background-color: #ecf0f1;
+    overflow: hidden;
+}
+
+.progressbar .the_progress {
+    position: absolute;
+    top: 0px; left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #bdc3c7;
+}
+
+.progressbar .label {
+    display: none;
+}
+
+.progressbar .label span.progress {
+
+}
+
+.progressbar .label span.total {
+
+}

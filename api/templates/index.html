@@ -96,9 +96,20 @@
 
 <h3 id="versioning">Versioning</h3>
 <p>There's no API versioning yet. A compatibility layer with the old API will be set up as soon as possible</p>
+<h3>Progress</h3>
+{% set total = 106 %}
+{% set progress = (networks | length) * 100 / total %}
+<p>So far we've ported to the new <a href="https://github.com/eskerda/pybikes/tree/experimental">PyBikes architecture</a> {{ networks | length }}/{{ total }} cities supported on the old API. You can help us speed up this process by <a href="#contribute">contributing</a> to our project.</p>
+<div class="progressbar">
+  <div class="the_progress" style="width: {{ progress }}%"></div>
+  <div class="label">
+    <span class="progress">{{ networks | length }}</span>
+    <span class="total">{{ total }}</span>
+  </div>
+</div>
 
-<h3>Contribute</h3>
-<p>This API is a display layer of <a href="http://github.com/eskerda/pybikes">PyBikes</a>. Feel free to dive into the <a href="http://github.com/eskerda/pybikes">repository</a> and contribute to our project, be it fixing a bug, or adding support for more cities.</p>
+<h3 id="contribute">Contribute</h3>
+<p>This API is a display layer of <a href="http://github.com/eskerda/pybikes">PyBikes</a>. Feel free to dive into the <a href="https://github.com/eskerda/pybikes/tree/experimental">repository</a> and contribute to our project, be it fixing a bug, or adding support for more cities.</p>
 
 <h3 id="tos">Terms of Service</h3>
 <p>CityBikes is a free service.</p>
