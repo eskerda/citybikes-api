@@ -1,0 +1,12 @@
+<h1>Work in progress</h1>
+{% set total = 106 %}
+{% set progress = (networks | length) * 100 / total %}
+<p>So far we've ported to the new <a href="https://github.com/eskerda/pybikes/wiki/architecture">PyBikes architecture</a> {{ networks | length }}/{{ total }} cities supported on the old API. Help us speed up this process by <a href="#contribute">contributing</a> to PyBikes.</p>
+<p>Ideas, opinions and feature requests are more than welcome, specially at this stage. Feel free to drop a line at <a href="mailto:info@citybik.es">info@citybik.es</a>, shout us <a href="http://twitter.com/ctbikes">@ctbikes</a> or fill any feature requests on the <a href="https://github.com/eskerda/pybikes/issues">issue tracker</a>.</p>
+<div class="progressbar">
+  <div class="the_progress" style="width: {{ progress }}%"></div>
+  <div class="label">
+    <span class="progress">{{ networks | length }}</span>
+    <span class="total">{{ total }}</span>
+  </div>
+</div>

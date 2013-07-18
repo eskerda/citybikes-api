@@ -1,3 +1,5 @@
+@import url(fonts/OpenSans/opensans.css);
+
 body {
     height: 100%;
     margin: 0px;
@@ -25,8 +27,7 @@ main {
     position: absolute;
     top: 0px; left: 0px;
     height: 100%;
-    width: 100%;
-    background-color: #bdc3c7;
+    background-color: rgba(46, 204, 113,1.0);
 }
 
 .progressbar .label {
@@ -39,4 +40,29 @@ main {
 
 .progressbar .label span.total {
 
+}
+
+.wip {
+    font-family: 'Open Sans';
+    font-weight: 300;
+    margin-top: 20px;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 8px;
+    color: #FFF;
+}
+
+.wip h1 {
+    margin-top: 0px;
+    font-weight: 300;
+    color: rgba(46, 204, 113,1.0);
+}
+.wip a {
+    color: rgba(46, 204, 113,1.0);
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.wip a:hover {
+    text-decoration: underline;
 }
