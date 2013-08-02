@@ -79,12 +79,14 @@ div.dark-popup {
 }
 
 div.dark-popup .leaflet-popup-content-wrapper {
-    background-color: #222;
+    background: rgba(34,34,34,0.8);
     border-radius: 4px;
+    box-shadow: none;
 }
 
 div.dark-popup .leaflet-popup-tip {
-    background-color: #222;
+    background: rgba(34,34,34,0.8);
+    box-shadow: none;
 }
 
 div.network-popup {
