@@ -66,3 +66,44 @@ main {
 .wip a:hover {
     text-decoration: underline;
 }
+
+.wip div#progress-map {
+    height: 340px;
+    margin-top: 20px;
+}
+
+
+div.dark-popup {
+    font-family: 'Open Sans';
+    font-weight: 300;
+}
+
+div.dark-popup .leaflet-popup-content-wrapper {
+    background-color: #222;
+    border-radius: 4px;
+}
+
+div.dark-popup .leaflet-popup-tip {
+    background-color: #222;
+}
+
+div.network-popup {
+
+}
+
+div.network-popup ul {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+div.network-popup ul li {
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
+div.network-popup ul li.city {
+    font-weight: bold;
+    font-size: 1.2em;
+}

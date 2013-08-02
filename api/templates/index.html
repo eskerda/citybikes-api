@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 {% set title = 'Documentation' %}
-{% block head %}
-{{ super() }}
+{% block head %}{{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='leaflet/leaflet.css') }}" />
+    <!--[if lte IE 8]>
+       <link rel="stylesheet" href="{{ url_for('static', filename='leaflet/leaflet.ie.css') }}" />
+    <![endif]-->
 {% endblock %}
 {% block content %}
 <div class="wip">
@@ -111,4 +114,10 @@
 <p>This restriction is meant to protect the work we do. We want to spread the word on the <a href="//citybik.es/about">things we believe</a>, this is not exactly open data as we adquire this information using many tricks. This is how the reality would look like if everything was open, but the world is not open yet. Not linking us means this message getting lost on its way.</p>
 <p>We plan on adding a section about the projects using CityBikes. If you are interested, feel free to send us a line at info@citybik.es.</p>
 <p>Happy Hacking!</p>
+{% endblock %}
+{% block footer %}
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/underscore-min.js') }}"></script>
+<script src="{{ url_for('static', filename='leaflet/leaflet.js') }}"></script>
+<script src="{{ url_for('static', filename='js/progress-map.js') }}"></script>
 {% endblock %}
