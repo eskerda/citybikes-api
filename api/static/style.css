@@ -72,6 +72,51 @@ main {
     margin-top: 20px;
 }
 
+.wip div.map_wrapper {
+    position: relative;
+}
+.wip div.map_wrapper div.legend {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: rgba(34,34,34,1);
+    border-bottom-left-radius: 8px;
+    font-size: 0.8em;
+    padding: 10px;
+}
+
+.wip div.map_wrapper div.legend ul {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+.wip div.map_wrapper div.legend ul li {
+    padding: 0px;
+    margin: 0px;
+}
+
+.wip div.map_wrapper div.legend span {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    background-color: #FFF;
+    border-radius: 2px;
+}
+
+.wip div.map_wrapper div.legend span.new {
+    background-color: #95C13C;
+}
+
+.wip div.map_wrapper div.legend span.ported {
+    background-color: #AF1AE1;
+}
+
+.wip div.map_wrapper div.legend span.not-ported {
+    background-color: #FFB902;
+}
+
 
 div.dark-popup {
     font-family: 'Open Sans';
