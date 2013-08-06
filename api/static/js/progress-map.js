@@ -105,16 +105,4 @@ $(function() {
                     .bindPopup(popup, {className: 'dark-popup network-popup'})
         })
     })
-    /*$.get('/networks', function(data){
-        _.each(data.networks, function(net) {
-            var popup = "<ul>" +
-                        "<li class='city'>"+net.network.location.city+"</li>" +
-                        "<li class='network'>"+net.network.name+"</li>" +
-                        "</ul>"
-            L.marker([net.network.location.latitude,
-                      net.network.location.longitude],
-                      {icon: netIcon}).addTo(map)
-                    .bindPopup(popup, {className: 'dark-popup network-popup'})
-        })
-    })*/
 })
