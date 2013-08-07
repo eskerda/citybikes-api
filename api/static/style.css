@@ -75,6 +75,7 @@ main {
 .wip div.map_wrapper {
     position: relative;
 }
+
 .wip div.map_wrapper div.legend {
     position: absolute;
     top: 0px;
@@ -153,4 +154,17 @@ div.network-popup ul li {
 div.network-popup ul li.city {
     font-weight: bold;
     font-size: 1.2em;
+}
+
+div#progress-map div.leaflet-bar {
+    box-shadow: none;
+}
+
+div#progress-map div.leaflet-bar a {
+    background: rgba(34,34,34,1) !important;
+    color: #FFF;
+}
+
+div#progress-map div.leaflet-bar a:hover {
+    background: rgba(100,100,100,1) !important;
 }

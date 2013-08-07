@@ -21,9 +21,9 @@ $(function() {
     })
 
     var map = L.map('progress-map').setView([30, 0], 2)
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">'
-                   + 'OpenStreetMap</a> contributors'
+    L.mapbox.tileLayer('eskerda.map-btpzyfuk', {
+        attribution: '<a href="http://mapbox.com">'
+                   + 'MapBox</a> contributors'
     }).addTo(map)
 
     function getOldNetworks() {

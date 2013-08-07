@@ -5,6 +5,10 @@
     <!--[if lte IE 8]>
        <link rel="stylesheet" href="{{ url_for('static', filename='leaflet/leaflet.ie.css') }}" />
     <![endif]-->
+    <link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+    <!--[if lte IE 8]>
+      <link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+    <![endif]-->
 {% endblock %}
 {% block content %}
 <div class="wip">
@@ -119,5 +123,6 @@
 <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/underscore-min.js') }}"></script>
 <script src="{{ url_for('static', filename='leaflet/leaflet.js') }}"></script>
+<script src='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
 <script src="{{ url_for('static', filename='js/progress-map.js') }}"></script>
 {% endblock %}
