@@ -73,13 +73,17 @@ $(function() {
             }
         })
 
+        var todo_layer = L.layerGroup([])
+        var done_layer = L.layerGroup([])
+        var new_layer = L.layerGroup([])
+
         _.each(todo, function(net) {
             var popup = "<ul>" +
                         "<li class='network'>"+net.name+"</li>" +
                         "</ul>"
             L.marker([net.lat/1E6,
                       net.lng/1E6],
-                      {icon: redIcon}).addTo(map)
+                      {icon: redIcon}).addTo(todo_layer)
                     .bindPopup(popup, {className: 'dark-popup network-popup'})
         })
 
@@ -90,7 +94,7 @@ $(function() {
                         "</ul>"
             L.marker([net.network.location.latitude,
                       net.network.location.longitude],
-                      {icon: purpleIcon}).addTo(map)
+                      {icon: purpleIcon}).addTo(done_layer)
                     .bindPopup(popup, {className: 'dark-popup network-popup'})
         })
 
@@ -101,8 +105,18 @@ $(function() {
                         "</ul>"
             L.marker([net.network.location.latitude,
                       net.network.location.longitude],
-                      {icon: greenIcon}).addTo(map)
+                      {icon: greenIcon}).addTo(new_layer)
                     .bindPopup(popup, {className: 'dark-popup network-popup'})
         })
+
+        todo_layer.addTo(map)
+        done_layer.addTo(map)
+        new_layer.addTo(map)
+
+        L.control.layers({},{
+            'New': new_layer,
+            'Ported': done_layer,
+            'Not Ported (yet)': todo_layer
+        }).addTo(map)
     })
 })
