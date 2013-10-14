@@ -53,7 +53,7 @@ class Station(Document):
             'longitude': self.longitude,
             'free_bikes': self.last_stat['bikes'],
             'slots': self.last_stat['free'],
-            'timestamp': self.last_stat['timestamp'].isoformat()
+            'timestamp': getIsoTimestamp(self.last_stat['timestamp'], 'Z')
         }
         return { self.__public_name__: result }
 
@@ -102,3 +102,11 @@ class ModelEncoder(json.JSONEncoder):
         if isinstance(obj, Document):
             return json.dumps({obj.__public_name__: obj.map_data(['name'])}, cls = GeneralPurposeEncoder)
         return json.JSONEncoder.default(self, obj)
+
+def getIsoTimestamp(dtime, TZ):
+    # http://www.w3.org/TR/NOTE-datetime
+    # In this silly function we assume TZ correctly represents the timezone
+    # in a string format: Z or +hh:mm or -hh:mm
+
+    return dtime.isoformat().rstrip('0') + TZ
+
