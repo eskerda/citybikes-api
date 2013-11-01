@@ -55,6 +55,10 @@ class Station(Document):
             'slots': self.last_stat['free'],
             'timestamp': getIsoTimestamp(self.last_stat['timestamp'], 'Z')
         }
+
+        if 'extra' in self.last_stat:
+            result['extra'] = self.last_stat['extra']
+
         return { self.__public_name__: result }
 
 class Network(Document):
