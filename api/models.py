@@ -79,6 +79,9 @@ class Network(Document):
             'company': self.data['company'],
             'href': '/networks/{0}'.format(self._id)
         }
+        if 'license' in self.data:
+            result['license'] = self.license
+
         if self.stations is not None:
             result['stations'] = map(lambda station: station.map_data(), self.stations)
 
