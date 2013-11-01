@@ -52,7 +52,7 @@ class Station(Document):
             'latitude': self.latitude,
             'longitude': self.longitude,
             'free_bikes': self.last_stat['bikes'],
-            'slots': self.last_stat['free'],
+            'empty_slots': self.last_stat['free'],
             'timestamp': getIsoTimestamp(self.last_stat['timestamp'], 'Z')
         }
 
