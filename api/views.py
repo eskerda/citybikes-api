@@ -2,7 +2,7 @@ from pymongo import Connection
 import json
 
 from api import app
-from flask import jsonify, request, render_template
+from flask import jsonify, request, render_template, redirect, abort
 from models import Network as Network_Model
 
 import models
@@ -10,6 +10,13 @@ import models
 connection = Connection(app.config['MONGO_HOST'], app.config['MONGO_PORT'])
 db = getattr(connection, app.config['MONGO_DB'])
 Network = Network_Model(db, connection)
+redirects = app.config['REDIRECT']
+
+def handle_redirect_or_notfound(network_id):
+    if network_id in redirects:
+        return redirect('/networks/%s' % redirects[network_id], 301)
+    else:
+        abort(404)
 
 @app.before_request
 def get_fields():
@@ -32,7 +39,11 @@ def list_networks():
 
 @app.route('/networks/<network_id>', methods = ['GET'])
 def get_network(network_id):
-    network = Network.find({'_id': network_id})[0]
+    network = Network.find({'_id': network_id})
+    if len(network) == 0:
+        return handle_redirect_or_notfound(network_id)
+    else:
+        network = network[0]
     network.Stations()
     return jsonify(network.map_data(app.fields))
 
