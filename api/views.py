@@ -45,6 +45,9 @@ def get_network(network_id):
     else:
         network = network[0]
     network.Stations()
-    return jsonify(network.map_data(app.fields))
+    response = {
+        'network': network.map_data(app.fields)
+    }
+    return jsonify(response)
 
 
