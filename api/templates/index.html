@@ -21,7 +21,6 @@
 <pre>{
   "networks": [
     {
-      "network": {
         "company": "JCDecaux", 
         <b>"href": "/networks/velib"</b>, <--- <a href="#net_resource">network API endpoint</a>
         "location": {
@@ -32,7 +31,6 @@
         }, 
         "name": "Vélib'", 
         "id": "velib"
-      }
     },
     {...}
   ]
@@ -44,7 +42,6 @@
     "name": "Vélib'", 
     "stations": [
       {
-        "station": {                                          -------
           "name": "00903 - QUAI MAURIAC  / PONT DE BERCY",   /   <a href="http://en.wikipedia.org/wiki/UTC" target="_blank">UTC</a> timestamp of the last time
           <b>"timestamp": "2013-06-06T23:20:01.986000", </b><------/ the station was updated on our systems
           "longitude": 2.374340554605615,                       
@@ -52,7 +49,6 @@
           "latitude": 48.83713368945151, 
           <b>"slots": 19,</b>  <------------------------------- Empty spaces
           <b>"id": "f5a551a87eec15155d6409fe9d0ff8e2"</b> <---- Unique id for this station
-        }
       },
       {...}
     ], 
@@ -77,25 +73,19 @@
 {
   "networks": [
     {
-      "network": {
         "href": "/networks/velib", 
         "id": "velib", 
         "name": "V\u00e9lib'"
-      }
     }, 
     {
-      "network": {
         "href": "/networks/valenbisi", 
         "id": "valenbisi", 
         "name": "Valenbisi"
-      }
     }, 
     {
-      "network": {
         "href": "/networks/ecobici", 
         "id": "ecobici", 
         "name": "EcoBici"
-      }
     },
     {...}
   ]
@@ -105,9 +95,6 @@
 <h3 id="format">Format</h3>
 <p>The system currently supports only <a target="_blank" href="http://en.wikipedia.org/wiki/JSON">JSON</a>.</p>
 <p>More formats may be implemented, and will be requested by setting the appropiate MIME type on the Content-Type field of the header's request.</p>
-
-<h3 id="versioning">Versioning</h3>
-<p>There's no API versioning yet. A compatibility layer with the old API will be set up as soon as possible</p>
 
 <h3 id="contribute">Contribute</h3>
 <p>This API is a display layer of <a href="http://github.com/eskerda/pybikes">PyBikes</a>. Feel free to dive into the <a href="https://github.com/eskerda/pybikes/tree/experimental">repository</a> and contribute to our project, be it fixing a bug, or adding support for more cities.</p>
