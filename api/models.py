@@ -59,7 +59,7 @@ class Station(Document):
         if 'extra' in self.last_stat:
             result['extra'] = self.last_stat['extra']
 
-        return { self.__public_name__: result }
+        return result
 
 class Network(Document):
     __collection__ = 'systems'
@@ -89,10 +89,10 @@ class Network(Document):
         if self.stations is not None:
             result['stations'] = map(lambda station: station.map_data(), self.stations)
 
-        return {self.__public_name__: {
-                        key: value for (key, value) in result.iteritems() 
-                            if fields is None or key in fields
-                    }}
+        return {
+            key: value for (key, value) in result.iteritems()
+                        if fields is None or key in fields
+        }
 
 
 class GeneralPurposeEncoder(json.JSONEncoder):
