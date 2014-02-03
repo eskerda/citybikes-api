@@ -14,110 +14,13 @@ main {
     height: 100%;
 }
 
-.progressbar {
-    position: relative;
-    height: 25px;
-    width: 100%;
-    border-radius: 2px;
-    background-color: #ecf0f1;
-    overflow: hidden;
-}
-
-.progressbar .the_progress {
-    position: absolute;
-    top: 0px; left: 0px;
-    height: 100%;
-    background-color: rgba(46, 204, 113,1.0);
-}
-
-.progressbar .label {
-    display: none;
-}
-
-.progressbar .label span.progress {
-
-}
-
-.progressbar .label span.total {
-
-}
-
-.wip {
-    font-family: 'Open Sans';
-    font-weight: 300;
+div.map {
     margin-top: 20px;
-    background-color: #222;
-    padding: 10px;
-    border-radius: 8px;
-    color: #FFF;
 }
 
-.wip h1 {
-    margin-top: 0px;
-    font-weight: 300;
-    color: rgba(46, 204, 113,1.0);
-}
-.wip a {
-    color: rgba(46, 204, 113,1.0);
-    font-weight: 400;
-    text-decoration: none;
-}
-
-.wip a:hover {
-    text-decoration: underline;
-}
-
-.wip div#progress-map {
+div#map {
     height: 340px;
-    margin-top: 20px;
 }
-
-.wip div.map_wrapper {
-    position: relative;
-}
-
-.wip div.map_wrapper div.legend {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    background: rgba(34,34,34,1);
-    border-bottom-left-radius: 8px;
-    font-size: 0.8em;
-    padding: 10px;
-}
-
-.wip div.map_wrapper div.legend ul {
-    padding: 0px;
-    margin: 0px;
-    list-style-type: none;
-}
-
-.wip div.map_wrapper div.legend ul li {
-    padding: 0px;
-    margin: 0px;
-}
-
-.wip div.map_wrapper div.legend span {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    margin-right: 5px;
-    background-color: #FFF;
-    border-radius: 2px;
-}
-
-.wip div.map_wrapper div.legend span.new {
-    background-color: #95C13C;
-}
-
-.wip div.map_wrapper div.legend span.ported {
-    background-color: #AF1AE1;
-}
-
-.wip div.map_wrapper div.legend span.not-ported {
-    background-color: #FFB902;
-}
-
 
 div.dark-popup {
     font-family: 'Open Sans';
@@ -128,6 +31,7 @@ div.dark-popup .leaflet-popup-content-wrapper {
     background: rgba(34,34,34,0.8);
     border-radius: 4px;
     box-shadow: none;
+    color: #FFF;
 }
 
 div.dark-popup .leaflet-popup-tip {
@@ -156,15 +60,15 @@ div.network-popup ul li.city {
     font-size: 1.2em;
 }
 
-div#progress-map div.leaflet-bar {
+div#map div.leaflet-bar {
     box-shadow: none;
 }
 
-div#progress-map div.leaflet-bar a {
+div#map div.leaflet-bar a {
     background: rgba(34,34,34,1) !important;
     color: #FFF;
 }
 
-div#progress-map div.leaflet-bar a:hover {
+div#map div.leaflet-bar a:hover {
     background: rgba(100,100,100,1) !important;
 }

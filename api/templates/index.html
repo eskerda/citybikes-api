@@ -11,8 +11,8 @@
     <![endif]-->
 {% endblock %}
 {% block content %}
-<div class="wip">
-{% include 'progress.html' %}
+<div class="map">
+    {% include 'map.html' %}
 </div>
 <h1>CityBikes API Documentation</h1>
 <p>Welcome to the CityBikes API documentation page. This is a brief explanation on how to use CityBikes data.</p>
@@ -111,5 +111,5 @@
 <script src="{{ url_for('static', filename='js/underscore-min.js') }}"></script>
 <script src="{{ url_for('static', filename='leaflet/leaflet.js') }}"></script>
 <script src='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
-<script src="{{ url_for('static', filename='js/progress-map.js') }}"></script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
 {% endblock %}
