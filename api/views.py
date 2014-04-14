@@ -6,6 +6,7 @@ from flask import jsonify, request, render_template, redirect, abort
 from models import Network as Network_Model
 
 import models
+import config
 
 connection = Connection(app.config['MONGO_HOST'], app.config['MONGO_PORT'])
 db = getattr(connection, app.config['MONGO_DB'])
@@ -26,7 +27,11 @@ def get_fields():
 def index():
     networks = Network.find()
     networks = map(lambda network: network.map_data(None), networks)
-    return render_template('index.html', networks = networks)
+    endpoint = config.ENDPOINT
+    prefix   = config.PREFIX
+    return render_template('index.html', networks = networks,
+                           endpoint = endpoint, prefix = prefix)
+
 
 @app.route('/networks/', methods = ['GET'])
 @app.route('/networks', methods = ['GET'])

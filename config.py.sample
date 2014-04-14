@@ -1,5 +1,0 @@
-#DEBUG = True
-#MONGO_HOST = <Mongo host, def:'localhost'>
-#MONGO_PORT = <Mongo portnum, def:27017>
-#MONGO_DB = <Mongo db: def:'citybikes_rq'>
-#PORT = 5000

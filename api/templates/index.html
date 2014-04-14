@@ -17,12 +17,12 @@
 <h1>CityBikes API Documentation</h1>
 <p>Welcome to the CityBikes API documentation page. This is a brief explanation on how to use CityBikes data.</p>
 <h2>API End points</h2>
-<pre>http://api.citybik.es/networks</pre>
+<pre>{{ endpoint }}{{ prefix }}/networks</pre>
 <pre>{
   "networks": [
     {
         "company": "JCDecaux", 
-        <b>"href": "/networks/velib"</b>, <--- <a href="#net_resource">network API endpoint</a>
+        <b>"href": "{{prefix}}/networks/velib"</b>, <--- <a href="#net_resource">network API endpoint</a>
         "location": {
           "latitude": 48.856612, 
           "city": "Paris", 
@@ -35,25 +35,25 @@
     {...}
   ]
 }</pre>
-<pre id="net_resource">http://api.citybik.es/networks/network_id</pre>
+<pre id="net_resource">{{endpoint}}{{prefix}}/networks/network_id</pre>
 <pre>
 {
   "network": {
     "name": "Vélib'", 
     "stations": [
       {
-          "name": "00903 - QUAI MAURIAC  / PONT DE BERCY",   /   <a href="http://en.wikipedia.org/wiki/UTC" target="_blank">UTC</a> timestamp of the last time
-          <b>"timestamp": "2013-06-06T23:20:01.986000", </b><------/ the station was updated on our systems
+          "name": "00903 - QUAI MAURIAC  / PONT DE BERCY",   /   <a href="http://en.wikipedia.org/wiki/UTC" target="_blank">UTC</a> Zulu timestamp of the last time
+          <b>"timestamp": "2014-04-14T12:10:17.622Z", </b> <-------/ the station was updated on our systems
           "longitude": 2.374340554605615,                       
           <b>"free_bikes": 1, </b>  <-------------------------- Available bikes
           "latitude": 48.83713368945151, 
-          <b>"slots": 19,</b>  <------------------------------- Empty spaces
+          <b>"empty_slots": 19,</b>  <------------------------- Empty spaces
           <b>"id": "f5a551a87eec15155d6409fe9d0ff8e2"</b> <---- Unique id for this station
       },
       {...}
     ], 
     "company": "JCDecaux",           |
-    "href": "/networks/velib",       |        Redundant Information
+    "href": "{{prefix}}/networks/velib",       |        Redundant Information
     "location": {                    |
       "latitude": 48.856612,         |    Just so you know where you are
       "city": "Paris",               |---      with less requests
@@ -68,22 +68,22 @@
 <h2>Syntax</h2>
 <h3 id="filter">Field filtering</h3>
 <p>Fields can be filtered by adding a <span>?fields=list,of,fields</span> parameter to any request. Field visibility gets only into the first document for now, but we plan on supporting lucene type parameters to allow filterings like location.city,station.*</p>
-<p>For example <a target="_blank" href="/networks?fields=id,name,href">http://api.citybik.es/networks?fields=id,name,href</a> will render just the name, id and API endpoint of each network</p>
+<p>For example <a target="_blank" href="/networks?fields=id,name,href">{{ endpoint }}{{ prefix }}/networks?fields=id,name,href</a> will render just the name, id and API endpoint of each network</p>
 <pre>
 {
   "networks": [
     {
-        "href": "/networks/velib", 
+        "href": "{{prefix}}/networks/velib", 
         "id": "velib", 
         "name": "V\u00e9lib'"
     }, 
     {
-        "href": "/networks/valenbisi", 
+        "href": "{{prefix}}/networks/valenbisi", 
         "id": "valenbisi", 
         "name": "Valenbisi"
     }, 
     {
-        "href": "/networks/ecobici", 
+        "href": "{{ prefix }}/networks/ecobici", 
         "id": "ecobici", 
         "name": "EcoBici"
     },

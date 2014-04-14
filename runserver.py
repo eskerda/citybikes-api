@@ -1,6 +1,5 @@
 from api import app
-
-import config
+from api import config
 
 app.config['MONGO_HOST'] = config.MONGO_HOST
 app.config['MONGO_PORT'] = config.MONGO_PORT

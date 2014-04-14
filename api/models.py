@@ -6,6 +6,8 @@ import json
 from datetime import datetime
 from bson.objectid import ObjectId
 
+import config
+
 class Document(object):
     
     __collection__ = None
@@ -71,6 +73,7 @@ class Network(Document):
         self.stations = sModel.find({'network_id': self._id})
 
     def map_data(self, fields = None):
+        href = '{0}/networks/{1}'.format(config.PREFIX, self._id)
         result = {
             'id': self._id,
             'name': self.name,
@@ -81,7 +84,7 @@ class Network(Document):
                 'longitude': self.longitude
             },
             'company': self.data['company'],
-            'href': '/networks/{0}'.format(self._id)
+            'href': href
         }
         if 'license' in self.data:
             result['license'] = self.license
