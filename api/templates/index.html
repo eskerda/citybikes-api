@@ -68,7 +68,7 @@
 <h2>Syntax</h2>
 <h3 id="filter">Field filtering</h3>
 <p>Fields can be filtered by adding a <span>?fields=list,of,fields</span> parameter to any request. Field visibility gets only into the first document for now, but we plan on supporting lucene type parameters to allow filterings like location.city,station.*</p>
-<p>For example <a target="_blank" href="/networks?fields=id,name,href">{{ endpoint }}{{ prefix }}/networks?fields=id,name,href</a> will render just the name, id and API endpoint of each network</p>
+<p>For example <a target="_blank" href="{{ endpoint }}{{ prefix }}/networks?fields=id,name,href">{{ endpoint }}{{ prefix }}/networks?fields=id,name,href</a> will render just the name, id and API endpoint of each network</p>
 <pre>
 {
   "networks": [
