@@ -118,5 +118,5 @@ def getIsoTimestamp(dtime, TZ):
     # In this silly function we assume TZ correctly represents the timezone
     # in a string format: Z or +hh:mm or -hh:mm
 
-    return dtime.isoformat().rstrip('0') + TZ
+    return dtime.isoformat() + TZ
 
