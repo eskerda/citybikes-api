@@ -1,0 +1,4 @@
+Flask
+ptvsd
+pymongo==2.9.5
+uwsgi
