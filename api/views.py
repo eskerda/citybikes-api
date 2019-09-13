@@ -4,6 +4,7 @@ import json
 from api import app
 from flask import jsonify, request, render_template, redirect, abort
 from models import Network as Network_Model
+from models import Nearby as Nearby_Model
 
 import models
 import config
@@ -11,6 +12,7 @@ import config
 connection = Connection(app.config['MONGO_HOST'], app.config['MONGO_PORT'])
 db = getattr(connection, app.config['MONGO_DB'])
 Network = Network_Model(db, connection)
+Nearby = Nearby_Model(db, connection)
 redirects = app.config['REDIRECT']
 
 def handle_redirect_or_notfound(network_id):
@@ -55,4 +57,26 @@ def get_network(network_id):
     }
     return jsonify(response)
 
+@app.route('/near/', methods = ['GET'])
+@app.route('/near', methods = ['GET'])
+def get_near():
+    latitude = request.args.get('latitude', None)
+    longitude = request.args.get('longitude', None)
+    distance = request.args.get('distance', 500)
 
+    if latitude is None or longitude is None:
+        return jsonify({
+            'error': 'Please specify both latitude and longitude parameters'
+        }), 400
+    
+    try:
+        latitude = float(latitude)
+        longitude = float(longitude)
+        distance = int(distance)
+    except ValueError:
+        return jsonify({
+            'error': 'Latitude and longitude should be float and distance should be an integer'
+        }), 400
+
+    Nearby.near(latitude, longitude, distance)
+    return jsonify(Nearby.map_data(app.fields))
