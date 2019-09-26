@@ -33,6 +33,10 @@ class Document(object):
         results = self.collection.find(*args, **kwargs)
         return map(lambda data: self.__class__(self.db, self.connection, data), results)
 
+    def aggregate(self, *args, **kwargs):
+        results = self.collection.aggregate(*args, **kwargs)
+        return map(lambda data: self.__class__(self.db, self.connection, data), results)
+
     def map_data(self):
         return self.data
 
@@ -63,6 +67,9 @@ class Station(Document):
 
         if 'extra' in self.last_stat:
             result['extra'] = self.last_stat['extra']
+
+        if self.distance is not None:
+            result['distance'] = int(self.distance)
 
         return result
 
@@ -113,20 +120,21 @@ class Nearby(object):
 
     def near(self, latitude, longitude, distance):
         sModel = Station(self.db, self.connection)
-        self.stations = sModel.find({
-            'location': {
-                '$near': {
-                    '$geometry': {
-                        'type': 'Point',
-                        'coordinates': [
-                            latitude,
-                            longitude
-                        ]
-                    },
-                    '$maxDistance': distance
-                }
+        self.stations = sModel.aggregate([{
+            '$geoNear': {
+                'near': {
+                    'type': 'Point',
+                    'coordinates': [
+                        latitude,
+                        longitude
+                    ]
+                },
+                'spherical': True,
+                'distanceField': 'distance',
+                'limit': 100,
+                'maxDistance': distance
             }
-        })
+        }], cursor={})
 
 class GeneralPurposeEncoder(json.JSONEncoder):
     def default(self, obj):
