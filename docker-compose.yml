@@ -1,0 +1,31 @@
+version: '3'
+services:
+  api:
+    image: citybikes/api
+    build: .
+    networks:
+      - citybikes
+    environment:
+      - MONGODB_HOST=mongodb
+      - DEBUG=True
+      - FLASK_ENV=development
+    env_file: .env
+    ports:
+      - "5051:5051"
+      - "5678:5678"
+    entrypoint:
+      - /usr/local/bin/python
+    command:
+      - "-m"
+      - "ptvsd"
+      - "--host"
+      - "0.0.0.0"
+      - "--port"
+      - "5678"
+      - "runserver.py"
+
+networks:
+  citybikes:
+    external:
+      # Use the network from citybikes-gyro stack
+      name: citybikes-gyro_citybikes
