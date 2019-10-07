@@ -68,7 +68,7 @@ class Station(Document):
         if 'extra' in self.last_stat:
             result['extra'] = self.last_stat['extra']
 
-        if self.distance is not None:
+        if hasattr(self, 'distance'):
             result['distance'] = int(self.distance)
 
         return result
