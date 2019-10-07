@@ -60,23 +60,23 @@ def get_network(network_id):
 @app.route('/near/', methods = ['GET'])
 @app.route('/near', methods = ['GET'])
 def get_near():
-    latitude = request.args.get('latitude', None)
     longitude = request.args.get('longitude', None)
+    latitude = request.args.get('latitude', None)
     distance = request.args.get('distance', 500)
 
-    if latitude is None or longitude is None:
+    if longitude is None or latitude is None:
         return jsonify({
-            'error': 'Please specify both latitude and longitude parameters'
+            'error': 'Please specify both longitude and latitude parameters'
         }), 400
     
     try:
-        latitude = float(latitude)
         longitude = float(longitude)
+        latitude = float(latitude)
         distance = int(distance)
     except ValueError:
         return jsonify({
-            'error': 'Latitude and longitude should be float and distance should be an integer'
+            'error': 'Longitude and latitude should be float and distance should be an integer'
         }), 400
 
-    Nearby.near(latitude, longitude, distance)
+    Nearby.near(longitude, latitude, distance)
     return jsonify(Nearby.map_data(app.fields))

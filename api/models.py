@@ -55,8 +55,8 @@ class Station(Document):
         result = {
             'id': self._id,
             'name': self.name,
-            'latitude': self.location['coordinates'][0],
-            'longitude': self.location['coordinates'][1],
+            'longitude': self.location['coordinates'][0],
+            'latitude': self.location['coordinates'][1],
             'free_bikes': self.last_stat['bikes'],
             'empty_slots': self.last_stat['free'],
             'timestamp': getIsoTimestamp(self.last_stat['timestamp'], 'Z')
@@ -118,15 +118,15 @@ class Nearby(object):
             'near': map(lambda station: station.map_data(include_network_id=True), self.stations)
         }
 
-    def near(self, latitude, longitude, distance):
+    def near(self, longitude, latitude, distance):
         sModel = Station(self.db, self.connection)
         self.stations = sModel.aggregate([{
             '$geoNear': {
                 'near': {
                     'type': 'Point',
                     'coordinates': [
-                        latitude,
-                        longitude
+                        longitude,
+                        latitude
                     ]
                 },
                 'spherical': True,
