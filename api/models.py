@@ -31,7 +31,11 @@ class Document(object):
 
     def find(self, *args, **kwargs):
         results = self.collection.find(*args, **kwargs)
-	return map(lambda data: self.__class__(self.db, self.connection, data), results)
+        return map(lambda data: self.__class__(self.db, self.connection, data), results)
+
+    def aggregate(self, *args, **kwargs):
+        results = self.collection.aggregate(*args, **kwargs)
+        return map(lambda data: self.__class__(self.db, self.connection, data), results)
 
     def map_data(self):
         return self.data
@@ -47,19 +51,25 @@ class Station(Document):
     __collection__ = 'stations'
     __public_name__ = 'station'
 
-    def map_data(self, fields = None):
+    def map_data(self, fields=None, include_network_id=False):
         result = {
             'id': self._id,
             'name': self.name,
-            'latitude': self.latitude,
-            'longitude': self.longitude,
+            'longitude': self.location['coordinates'][0],
+            'latitude': self.location['coordinates'][1],
             'free_bikes': self.last_stat['bikes'],
             'empty_slots': self.last_stat['free'],
             'timestamp': getIsoTimestamp(self.last_stat['timestamp'], 'Z')
         }
 
+        if include_network_id:
+            result['network_id'] = self.network_id
+
         if 'extra' in self.last_stat:
             result['extra'] = self.last_stat['extra']
+
+        if hasattr(self, 'distance'):
+            result['distance'] = int(self.distance)
 
         return result
 
@@ -69,7 +79,7 @@ class Network(Document):
     stations = None
 
     def Stations(self):
-        sModel = Station(self.db, self.collection)
+        sModel = Station(self.db, self.connection)
         self.stations = sModel.find({'network_id': self._id})
 
     def map_data(self, fields = None):
@@ -97,6 +107,34 @@ class Network(Document):
                         if fields is None or key in fields
         }
 
+
+class Nearby(object):
+    def __init__(self, db, connection):
+        self.connection = connection
+        self.db = db
+
+    def map_data(self, fields=None):
+        return {
+            'near': map(lambda station: station.map_data(include_network_id=True), self.stations)
+        }
+
+    def near(self, longitude, latitude, distance):
+        sModel = Station(self.db, self.connection)
+        self.stations = sModel.aggregate([{
+            '$geoNear': {
+                'near': {
+                    'type': 'Point',
+                    'coordinates': [
+                        longitude,
+                        latitude
+                    ]
+                },
+                'spherical': True,
+                'distanceField': 'distance',
+                'limit': 100,
+                'maxDistance': distance
+            }
+        }], cursor={})
 
 class GeneralPurposeEncoder(json.JSONEncoder):
     def default(self, obj):
