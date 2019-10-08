@@ -57,8 +57,8 @@ def get_network(network_id):
     }
     return jsonify(response)
 
-@app.route('/near/', methods = ['GET'])
-@app.route('/near', methods = ['GET'])
+@app.route('/stations/near/', methods=['GET'])
+@app.route('/stations/near', methods=['GET'])
 def get_near():
     longitude = request.args.get('longitude', None)
     latitude = request.args.get('latitude', None)
